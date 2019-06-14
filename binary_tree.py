@@ -68,6 +68,52 @@ class Tree():
             self.post_order(root.left)
             self.post_order(root.right)
             print(root.val)
+            
+    def pre_order2(self, root):
+        '''
+        非递归前序遍历
+        '''
+        stack = []
+        node = root
+        while node != None or len(stack) != 0:
+            while node != None:
+                print(node.val)
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            node = node.right
+            
+    def in_order2(self, root):
+        '''
+        非递归中序遍历
+        '''
+        stack = []
+        node = root
+        while node != None or len(stack) != 0:
+            while node != None:
+                stack.append(node)
+                node = node.left
+            node = stack.pop()
+            print(node.val)
+            node = node.right
+            
+    def post_order2(self, root):
+        '''
+        非递归后序遍历
+        '''
+        stack1 = []
+        stack2 = []
+        node = root
+        stack1.append(node)
+        while len(stack1) != 0:
+            node = stack1.pop()
+            if node.left:
+                stack1.append(node.left)
+            if node.right:
+                stack1.append(node.right)
+            stack2.append(node)
+        while len(stack2) != 0:
+            print(stack2.pop().val)
         
 
 # test
@@ -81,3 +127,7 @@ for i in elems:
 tree.pre_order(tree.root)
 tree.in_order(tree.root)
 tree.post_order(tree.root)
+
+tree.pre_order2(tree.root)
+tree.in_order2(tree.root)
+tree.post_order2(tree.root)
