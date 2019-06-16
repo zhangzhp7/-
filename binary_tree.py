@@ -83,6 +83,41 @@ class Tree():
             node = stack.pop()
             node = node.right
             
+    def lever_order(self, root):
+        '''
+        层次遍历
+        '''
+        q = []
+        if root:
+            q.append(root)
+            while len(q) != 0:
+                p = q.pop(0)
+                print(p.val)
+                if p.left != None:
+                    q.append(p.left)
+                if p.right != None:
+                    q.append(p.right)
+                    
+    def lever_order2(self, root):
+        
+        res = []
+        if root is None:
+            return res
+        q = []
+        q.append(root)
+        while len(q) != 0:
+            temp = [] # 储存同层节点
+            length = len(q) # 记录同层节点个数
+            for i in range(length):
+                p = q.pop(0)
+                if p.left != None:
+                    q.append(p.left)
+                if p.right != None:
+                    q.append(p.right)
+                temp.append(p.val)
+            res.append(temp)
+        return res
+            
     def in_order2(self, root):
         '''
         非递归中序遍历
@@ -127,6 +162,9 @@ for i in elems:
 tree.pre_order(tree.root)
 tree.in_order(tree.root)
 tree.post_order(tree.root)
+
+tree.lever_order(tree.root)
+tree.lever_order2(tree.root)
 
 tree.pre_order2(tree.root)
 tree.in_order2(tree.root)
